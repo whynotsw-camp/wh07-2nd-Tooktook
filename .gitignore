@@ -2,3 +2,18 @@
 *.__pycache__
 *.data
 *.txt
+*.env
+
+#Python
+pycache/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+.env
+#Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+#Data
+*.csv
+*.sql
