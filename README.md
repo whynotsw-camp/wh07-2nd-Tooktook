@@ -23,6 +23,12 @@ LG U+ Why Not SW Camp 7기 툭툭 레포지토리 입니다.
       <th>홍가연</th>
     </tr>
     <tr>
+      <td><img src="./pic/잠만보.png" width="150"/></td>
+      <td><img src="./pic/파오리.png"" width="150"/></td>
+      <td><img src="./pic/고라파덕.png"" width="150"/></td>
+      <td><img src="./pic/망나뇽.png"" width="150"/></td>
+    </tr>
+    <tr>
       <td align="center"><a href="https://github.com/Zdeik"><img src="https://img.shields.io/badge/GitHub-Link-MediumSeaGreen?logo=github"/></a></td>
       <td align="center"><a href="https://github.com/sjun4040"><img src="https://img.shields.io/badge/GitHub-Link-MediumSeaGreen?logo=github"/></a></td>
       <td align="center"><a href="https://github.com/meanresult"><img src="https://img.shields.io/badge/GitHub-Link-MediumSeaGreen?logo=github"/></a></td>
