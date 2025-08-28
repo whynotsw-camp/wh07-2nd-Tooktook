@@ -8,7 +8,7 @@ from typing import Optional
 def predicti(df_tomorrow_predictions,df_predictions,df_consultations):
     import plotly.express as px
     st.set_page_config(page_title="상담 분석 대시보드", layout="wide")
-    st.header("상담 분석 (회귀/분류) — 예측일자 자동 감지")
+    st.header("상담 분석 (회귀/분류) — 내일 예측")
 
     # -----------------------------
     # 0) 파일 경로 (내일 예측 파일 2개)
@@ -107,13 +107,68 @@ def predicti(df_tomorrow_predictions,df_predictions,df_consultations):
     # -----------------------------
     # 4) 탭
     # -----------------------------
-    subtab_reg, subtab_cls = st.tabs(["📈 회귀: 예측일 예측", "🧭 분류: 예측일 Top-3"])
+    subtab_reg, subtab_cls = st.tabs(["📈 회귀: 다음 날 예측", "🧭 분류: 다음 날 자금유형 Top-3 예측"])
+    
+    def _badge_by_score(value: float, higher_is_better: bool = True) -> str:
+        """아주 단순한 배지 규칙: 높을수록 좋으면 0.7/0.5 기준, 낮을수록 좋으면 3.0/5.0 같은 식으로 커스텀 가능"""
+        if value is None:
+            return "⚪ 보류"
+        v = value if higher_is_better else -value  # 낮을수록 좋은 지표는 역부호
+        if v >= 0.70:  # (예) AUC/F1 같은 지표
+            return "🟢"
+        elif v >= 0.50:
+            return "🟡"
+        return "🔴"
+
+    def _reg_badge_rmse(rmse: float) -> str:
+        """RMSE는 낮을수록 좋음. 임계는 상황에 맞게 조정하세요."""
+        if rmse is None:
+            return "⚪"
+        if rmse <= 3.0:
+            return "🟢"
+        elif rmse <= 5.0:
+            return "🟡"
+        return "🔴"
+
+    def render_reg_summary_box():
+        st.markdown("#### 🧠 회귀 모델 요약")
+        st.caption("최종 Best: **ENS(0.75·XGB_Pois + 0.25·RF)**")
+        c1, c2, c3 = st.columns(3)
+        c1.metric("RMSE (↓)", "3.668", None, help="실제 상담 건수와 예측 건수의 차이를 시간대별로 평균 제곱근 오차(Root Mean Squared Error)로 측정한 값")
+        c2.metric("신뢰 배지", _reg_badge_rmse(3.668), help="RMSE 기준 신뢰도: ≤3.0🟢 (매우 양호) / ≤5.0🟡 (보통) / 그 외🔴")
+        c3.caption(
+            "• 예측 기준: 과거 상담 로그의 시간대별 상담 건수  \n"
+            "• 목표1: **내일 각 시간대별 상담 수** 예측  \n"
+            "• 목표2: **내일 각 시간대별 자금유형별 건수** 예측  \n"
+            "• 앙상블 가중치: 0.75(XGB_Pois) + 0.25(RF)",
+            unsafe_allow_html=True
+        )
+
+    def render_cls_summary_box():
+        st.markdown("#### 🧠 분류 모델 요약")
+        # 제공 성능
+        auc_macro = 0.8443
+        acc       = 0.6295
+        top3      = 0.9443
+    
+        c1, c2, c3 = st.columns(3)
+        c1.metric("AUC (macro)", f"{auc_macro:.4f}", _badge_by_score(auc_macro), help="모든 자금유형 클래스 쌍에 대해 구한 ROC-AUC의 Macro 평균 (모델이 클래스 구분을 얼마나 잘하는지)")
+        c2.metric("ACC", f"{acc:.4f}", _badge_by_score(acc), help="전체 슬롯 중 올바르게 예측한 비율 (정확도)")
+        c3.metric("Top-3 Hit", f"{top3:.4f}", _badge_by_score(top3), help="예측 상위 3개 유형 안에 실제 상담 자금유형이 포함된 비율 (추천 성공률)")
+        st.caption(
+            "예측 기준: 과거 상담 로그의 시간대·요일·이전 유형 패턴  \n"
+            "목표: **내일 각 시간대별 상담의 주요 자금유형(Top-1~3)** 예측  \n"
+            "알고리즘: XGBClassifier"
+        )
 
     # =============================
     # (A) 회귀: 예측일 예측
     # =============================
     with subtab_reg:
-        st.subheader(f"예측일 예측 (회귀) — {day_start:%Y-%m-%d}")
+        st.subheader(f"내일 예측 (회귀) — {day_start:%Y-%m-%d}")
+        with st.expander('설명'):
+            render_reg_summary_box()
+            
 
         if reg_pred is None or "ts_slot" not in (reg_pred.columns if reg_pred is not None else []):
             st.info(f"{df_tomorrow_predictions.name} 파일이 없거나 ts_slot 컬럼이 없습니다.")
@@ -156,7 +211,7 @@ def predicti(df_tomorrow_predictions,df_predictions,df_consultations):
                     fig_line.update_layout(xaxis_title="시간대", yaxis_title="예측 상담수")
                     st.plotly_chart(fig_line, use_container_width=True)
 
-                    st.markdown("### 🏆 피크 슬롯 Top-5")
+                    st.markdown("### 🏆 피크 시간대 Top-5")
                     top5 = day_df.sort_values("y_pred", ascending=False).head(5).copy()
                     top5["slot_dt"] = pd.to_datetime(top5["ts_slot"])
                     top5["slot_str"] = top5["slot_dt"].dt.strftime("%m-%d %H시")
@@ -171,7 +226,7 @@ def predicti(df_tomorrow_predictions,df_predictions,df_consultations):
                                 delta_text = f"{y_now - float(prev_act.iloc[0]):+0.0f}"
                         colz[i].metric(f"#{i+1} {r['slot_str']}", f"{y_now} 건", delta_text)
 
-                    st.markdown("### 📋 예측 표")
+                    st.markdown("### 📋 시간대별 예측 상담 수")
                     show = day_df[["ts_slot","y_pred"]].copy().rename(columns={"ts_slot":"시간대","y_pred":"예측 상담수"})
                     st.dataframe(show, use_container_width=True)
 
@@ -179,7 +234,10 @@ def predicti(df_tomorrow_predictions,df_predictions,df_consultations):
     # (B) 분류: 예측일 Top-3
     # =============================
     with subtab_cls:
-        st.subheader(f"예측일 Top-3 (분류) — {day_start:%Y-%m-%d}")
+        st.subheader(f"내일 자금유형 예측 Top-3 (분류) — {day_start:%Y-%m-%d}")
+        with st.expander('설명'):
+            render_cls_summary_box()
+            
 
         if cls_pred is None or "ts_slot" not in (cls_pred.columns if cls_pred is not None else []):
             st.info(f"{df_predictions.name} 파일이 없거나 ts_slot 컬럼이 없습니다.")
@@ -230,7 +288,7 @@ def predicti(df_tomorrow_predictions,df_predictions,df_consultations):
             # 가중 방식 선택: 개수 기반 vs 확률합(p1) 기반
             how = st.radio(
                 "집계 기준 선택",
-                ["개수 기준(빈도)", "확률합 기준(모델 확신도)"],
+                ["개수 기준(빈도)", "확률합(p1) 기준(모델 확신도)"],
                 horizontal=True, index=0, key="rank_mode"
             )
 
@@ -246,7 +304,7 @@ def predicti(df_tomorrow_predictions,df_predictions,df_consultations):
             # 상위 3개
             top3 = dist.sort_values("score", ascending=False).head(3).reset_index(drop=True)
 
-            st.markdown("### 🏆 예측 추천 Top-3 (예측 구간 전체 기준)")
+            st.markdown("### 🏆 예측 추천 Top-3")
             c1, c2, c3 = st.columns(3)
             for i, row in top3.iterrows():
                 col = [c1, c2, c3][i]

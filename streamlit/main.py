@@ -83,7 +83,7 @@ except Exception as e:
 # 헤더
 st.markdown("""
 <div class="main-header">
-    <h1 style="color: #2c3e50; margin-bottom: 0.5rem;">📝상담사 관리 대시보드</h1>
+    <h1 style="color: #2c3e50; margin-bottom: 0.5rem;">상담사 관리 대시보드</h1>
     <p style="color: #7f8c8d; font-size: 1.1rem; margin: 0;">실시간 상담사 현황 및 성과 모니터링</p>
 </div>
 """, unsafe_allow_html=True)
@@ -126,7 +126,7 @@ with col4:
 with col5:
     st.markdown(f"""
     <div class="metric-card">
-        <div class="metric-value">{good_rate:.1f}</div>
+        <div class="metric-value">{good_rate:.1f}/5.0</div>
         <div class="metric-label">평균 만족도</div>
     </div>
     """, unsafe_allow_html=True)
@@ -134,7 +134,7 @@ with col5:
 st.markdown("<br>", unsafe_allow_html=True)
 
 # 차트 섹션
-tab1, tab2, tab3, tab4 = st.tabs(["👩‍💻 상담사", "⏰ 시간대별", "🤖 머신러닝", "🤦 고객페이지"])
+tab1, tab2, tab3, tab4 = st.tabs(["👩‍💻 상담사", "⏰ 시간대별", "🦾 머신러닝", "🤦 고객페이지"])
 
 with tab1:
     with st.container():
@@ -179,7 +179,7 @@ with tab3:
         st.markdown("""
         <div style="background: rgba(255, 255, 255, 0.95); padding: 1.5rem; border-radius: 12px; 
                     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); margin-bottom: 1rem;">
-            <h3 style="color: #2c3e50; margin-bottom: 1rem;">🤖머신러닝</h3>
+            <h3 style="color: #2c3e50; margin-bottom: 1rem;">🦾머신러닝</h3>
         </div>
         """, unsafe_allow_html=True)
         try:
