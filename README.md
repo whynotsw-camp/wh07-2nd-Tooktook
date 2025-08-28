@@ -1,6 +1,14 @@
 # wh07-2nd-Tooktook
-LG U+ Why Not SW Camp 7기 툭툭 레포지토리 입니다.
+## LG U+ Why Not SW Camp 7기 툭툭 레포지토리 입니다.
 
+<p align="center">
+  <img src="./pic/툭툭이.png" alt="툭툭이" width="220"/>
+  <img src="./pic/툭툭이2.png" alt="툭툭이2" width="220"/>
+  <br/>
+  <em style="font-size: 13px; color: gray;">* GPT 기반 이미지 생성 툴을 활용해 제작된 캐릭터입니다.</em>
+</p>
+
+--- 
 
 # 1. 프로젝트 정의
 - 목표   
