@@ -13,7 +13,23 @@ LG U+ Why Not SW Camp 7기 툭툭 레포지토리 입니다.
 
 # 2. 주요 내용
 - 프로젝트 기간: 2025-08-25 ~ 2025-08-29
-- 참여 인원: [팀원 이름]
+- 참여 인원: 
+<div align="center">
+  <table>
+    <tr>
+      <th>이정석</th>
+      <th>박상준</th>
+      <th>한지훈</th>
+      <th>홍가연</th>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://github.com/Zdeik"><img src="https://img.shields.io/badge/GitHub-Link-MediumSeaGreen?logo=github"/></a></td>
+      <td align="center"><a href="https://github.com/sjun4040"><img src="https://img.shields.io/badge/GitHub-Link-MediumSeaGreen?logo=github"/></a></td>
+      <td align="center"><a href="https://github.com/meanresult"><img src="https://img.shields.io/badge/GitHub-Link-MediumSeaGreen?logo=github"/></a></td>
+      <td align="center"><a href="https://github.com/gayeoniee"><img src="https://img.shields.io/badge/GitHub-Link-MediumSeaGreen?logo=github"/></a></td>
+    </tr>
+  </table>
+</div>
 - 데이터 출처: 팀 내 구축한 상담 이력 데이터셋 (상담 로그, 상담 유형, 상담 시간대 등)
 
 
