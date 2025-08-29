@@ -80,9 +80,14 @@
 
   - 데이터 수집: Python
   - 분석 및 처리: Pandas, NumPy, scikit-learn
-  - 시각화: Plotly, Streamlit
+  - 시각화: Plotly, Seaborn
+  - ui: Streamlit
 
 📌 아키텍처 다이어그램
+<p align="center">
+  <img src="./pic/아키텍쳐.png" alt="아키텍쳐" width="800"/>
+</p>
+
 
 # 5. 데이터 연동 정의서
 - 데이터 소스: 상담 이력 데이터
