@@ -1,20 +1,26 @@
-*.vscode
-*.__pycache__
-*.data
-*.txt
-*.env
+# IDE 및 편집기 설정
+.vscode/
 
-#Python
-pycache/
+# Python 관련 파일
+__pycache__/
 *.pyc
 *.pyo
-*.pyd
 .venv/
 venv/
+<<<<<<< HEAD
 #Jupyter Notebook Checkpoints
+=======
+
+# Jupyter Notebook 관련
+>>>>>>> a1f5463dccdab5678acbe4c39f9c56da6b7fd2c5
 .ipynb_checkpoints/
-#Data
+
+# 데이터 및 로그 파일
 *.csv
 *.sql
+<<<<<<< HEAD
 __pycache__
-.env
+=======
+*.txt
+*.data
+>>>>>>> a1f5463dccdab5678acbe4c39f9c56da6b7fd2c5
