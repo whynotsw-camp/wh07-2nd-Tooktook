@@ -94,7 +94,7 @@ col1, col2, col3, col4, col5 = st.columns(5)
 with col1:
     st.markdown(f"""
     <div class="metric-card">
-        <div class="metric-value">{total_cons}</div>
+        <div class="metric-value">{total_cons:,}</div>
         <div class="metric-label">총 상담건수 </div>
     </div>
     """, unsafe_allow_html=True)
@@ -102,7 +102,7 @@ with col1:
 with col2:
     st.markdown(f"""
     <div class="metric-card">
-        <div class="metric-value">{total_customer}</div>
+        <div class="metric-value">{total_customer:,}</div>
         <div class="metric-label">총 상담자수</div>
     </div>
     """, unsafe_allow_html=True)
