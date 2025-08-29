@@ -90,7 +90,13 @@
 
 
 # 5. 데이터 연동 정의서
-- 데이터 소스: 상담 이력 데이터
+- 데이터: 상담 이력 데이터
+
+<p align="center">
+  <img src="./pic/ERD.png" alt="ERD" width="1000"/>
+  <em style="font-size: 10px; color: gray;">ERD Diagram</em>
+</p>
+
 - 주요 컬럼
 
   - user_id: 사용자 ID
