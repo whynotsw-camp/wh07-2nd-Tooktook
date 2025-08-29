@@ -7,20 +7,11 @@ __pycache__/
 *.pyo
 .venv/
 venv/
-<<<<<<< HEAD
-#Jupyter Notebook Checkpoints
-=======
-
-# Jupyter Notebook 관련
->>>>>>> a1f5463dccdab5678acbe4c39f9c56da6b7fd2c5
 .ipynb_checkpoints/
 
 # 데이터 및 로그 파일
 *.csv
 *.sql
-<<<<<<< HEAD
+
 __pycache__
-=======
-*.txt
-*.data
->>>>>>> a1f5463dccdab5678acbe4c39f9c56da6b7fd2c5
+.env
