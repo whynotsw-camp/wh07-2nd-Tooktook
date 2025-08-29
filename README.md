@@ -93,16 +93,45 @@
 - 데이터: 상담 이력 데이터
 
 <p align="center">
-  <img src="./pic/ERD.png" alt="ERD" width="1000"/>
+  <img src="./pic/ERD.png" alt="ERD" height="600"/>
   <em style="font-size: 10px; color: gray;">ERD Diagram</em>
 </p>
 
-- 주요 컬럼
-
-  - user_id: 사용자 ID
-  - timestamp: 상담 시간
-  - fund_type: 상담 자금 유형
-  - feedback: 상담 요약/결과
+- 테이블 설명
+    <div align="center">
+    <table>
+      <tr>
+        <th>테이블명</th>
+        <th설명</th>
+      </tr>
+      <tr>
+        <td>consultants</td>
+        <td>consultation_documents</td>
+        <td>consultation_fund_types</td>
+        <td>consultations</td>
+        <td>conversation_logs</td>
+        <td>customers</td>
+        <td>documents</td>
+        <td>fund_types</td>
+        <td>statistics</td>
+        <td>tomorrow_predictions</td>
+        <td>predictions</td>
+      </tr>
+      <tr>
+        <td>상담사 정보</td>
+        <td>상담에 쓰인 필요 서류</td>
+        <td>상담한 자금 유형</td>
+        <td>상담 내역 (상담사, 고객, 시간 등)</td>
+        <td>상담 상세 기록 (상담 진행 상황 기록)</td>
+        <td>고객 정보</td>
+        <td>필요 서류 정보</td>
+        <td>자금 유형 정보</td>
+        <td>통계 테이블 (카테고리별 통계)</td>
+        <td>회귀 모델로 예측한 다음날 시간대별 상담건수</td>
+        <td>분류 모델로 예측한 다음날 시간대별 상담 자금유형 Top3</td>
+      </tr>
+    </table>
+    </div>
 
 
 # 6. 시각화 개요 & 대시보드 명세
