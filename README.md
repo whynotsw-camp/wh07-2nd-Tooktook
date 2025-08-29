@@ -99,38 +99,56 @@
 
 - 테이블 설명
     <div align="center">
-    <table>
-      <tr>
-        <th>테이블명</th>
-        <th설명</th>
-      </tr>
-      <tr>
-        <td>consultants</td>
-        <td>consultation_documents</td>
-        <td>consultation_fund_types</td>
-        <td>consultations</td>
-        <td>conversation_logs</td>
-        <td>customers</td>
-        <td>documents</td>
-        <td>fund_types</td>
-        <td>statistics</td>
-        <td>tomorrow_predictions</td>
-        <td>predictions</td>
-      </tr>
-      <tr>
-        <td>상담사 정보</td>
-        <td>상담에 쓰인 필요 서류</td>
-        <td>상담한 자금 유형</td>
-        <td>상담 내역 (상담사, 고객, 시간 등)</td>
-        <td>상담 상세 기록 (상담 진행 상황 기록)</td>
-        <td>고객 정보</td>
-        <td>필요 서류 정보</td>
-        <td>자금 유형 정보</td>
-        <td>통계 테이블 (카테고리별 통계)</td>
-        <td>회귀 모델로 예측한 다음날 시간대별 상담건수</td>
-        <td>분류 모델로 예측한 다음날 시간대별 상담 자금유형 Top3</td>
-      </tr>
-    </table>
+      <table border="1">
+        <tr>
+          <th>테이블명</th>
+          <th>설명</th>
+        </tr>
+        <tr>
+          <td>consultants</td>
+          <td>상담사 정보</td>
+        </tr>
+        <tr>
+          <td>consultation_documents</td>
+          <td>상담에 쓰인 필요 서류</td>
+        </tr>
+        <tr>
+          <td>consultation_fund_types</td>
+          <td>상담한 자금 유형</td>
+        </tr>
+        <tr>
+          <td>consultations</td>
+          <td>상담 내역 (상담사, 고객, 시간 등)</td>
+        </tr>
+        <tr>
+          <td>conversation_logs</td>
+          <td>상담 상세 기록 (상담 진행 상황 기록)</td>
+        </tr>
+        <tr>
+          <td>customers</td>
+          <td>고객 정보</td>
+        </tr>
+        <tr>
+          <td>documents</td>
+          <td>필요 서류 정보</td>
+        </tr>
+        <tr>
+          <td>fund_types</td>
+          <td>자금 유형 정보</td>
+        </tr>
+        <tr>
+          <td>statistics</td>
+          <td>통계 테이블 (카테고리별 통계)</td>
+        </tr>
+        <tr>
+          <td>tomorrow_predictions</td>
+          <td>회귀 모델로 예측한 다음날 시간대별 상담건수</td>
+        </tr>
+        <tr>
+          <td>predictions</td>
+          <td>분류 모델로 예측한 다음날 시간대별 상담 자금유형 Top3</td>
+        </tr>
+      </table>
     </div>
 
 
