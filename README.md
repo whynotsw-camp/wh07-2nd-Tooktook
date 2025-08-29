@@ -80,7 +80,8 @@
 
   - 데이터 수집: Python
   - 분석 및 처리: Pandas, NumPy, scikit-learn
-  - 시각화: Plotly, Streamlit
+  - 시각화: Plotly, Seaborn
+  - ui: Streamlit
 
 📌 아키텍처 다이어그램
 <p align="center">
