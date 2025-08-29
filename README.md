@@ -98,7 +98,7 @@
 </p>
 
 - 테이블 설명
-    <div align="center">
+    <div align="left">
       <table border="1">
         <tr>
           <th>테이블명</th>
